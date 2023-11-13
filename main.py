@@ -56,13 +56,15 @@ def button_click():
     if (len(first_entry.get()) == 0) or (len(second_entry.get()) == 0):
         third_label.config(text="Enter both weight and height!")
     else:
-        if not (first_entry.get().isnumeric() or second_entry.get().isnumeric()):
-            third_label.config(text="Enter a valid number!")
-        else:
+        try:
             weight = int(first_entry.get())
             height = int(second_entry.get())
-            res = bmi_calc(weight,height)
+            res = bmi_calc(weight, height)
             third_label.config(text=result(res))
+        except:
+            third_label.config(text="Enter a valid number!")
+
+
 
 my_button.config(command=button_click)
 window.mainloop()
